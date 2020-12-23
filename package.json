@@ -1,0 +1,40 @@
+{
+	"author": {
+		"email": "demirci.baris38@gmail.com",
+		"name": "Barış DEMİRCİ",
+		"url": "https://bariscodes.me"
+	},
+	"description": "Pogger",
+	"version": "0.0.1",
+	"typings": "dist",
+	"scripts": {
+		"prebuild": "rimraf dist",
+		"build": "tsc"
+	},
+	"keywords": [
+		"logger",
+		"log",
+		"color",
+		"colored",
+		"better-logger",
+		"logs",
+		"logging"
+	],
+	"license": "MIT",
+	"main": "dist",
+	"name": "pogger",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/barbarbar338/pogger"
+	},
+	"devDependencies": {
+		"@types/node": "^14.14.14",
+		"rimraf": "^3.0.2",
+		"typescript": "^4.1.3"
+	},
+	"dependencies": {
+		"@types/supports-color": "^7.2.0",
+		"chalk": "^4.1.0",
+		"supports-color": "^8.1.0"
+	}
+}
