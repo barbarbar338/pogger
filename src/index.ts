@@ -6,16 +6,13 @@ const successIcon = stdout ? "✔" : "√";
 const warningIcon = stdout ? "⚠" : "‼";
 const errorIcon = stdout ? "✖" : "×";
 
-export const info = (message: string): string => log(message, infoIcon, cyan);
-export const success = (message: string): string => log(message, successIcon, green);
-export const warning = (message: string): string => log(message, warningIcon, yellow);
-export const error = (message: string): string => log(message, errorIcon, red);
+export const info = (...logs: unknown[]): void => log(logs, infoIcon, cyan);
+export const success = (...logs: unknown[]): void => log(logs, successIcon, green);
+export const warning = (...logs: unknown[]): void => log(logs, warningIcon, yellow);
+export const error = (...logs: unknown[]): void => log(logs, errorIcon, red);
 
-function log(message: string, icon: string, color: (text: unknown) => string): string {
-    const date = generateDate();
-    const log = `${date} ${color(icon)} ${message}`;
-    console.log(log);
-    return log;
+function log(logs: unknown[], icon: string, color: (text: unknown) => string): void {
+    console.log(generateDate(), color(icon), ...logs);
 }
 
 function generateDate(): string {
