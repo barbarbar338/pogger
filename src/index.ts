@@ -1,14 +1,20 @@
-import { cyan, green, grey, red, yellowBright as yellow } from "chalk";
+import { cyan, green, grey, red, yellowBright as yellow, ChalkFunction } from "chalk";
 import { stdout } from "supports-color";
 
-export const infoIcon = stdout ? "ℹ" : "i";
-export const successIcon = stdout ? "✔" : "√";
-export const warningIcon = stdout ? "⚠" : "‼";
-export const errorIcon = stdout ? "✖" : "×";
+export type PoggerLogger = (...logs: unknown[]) => void;
 
-export const generateDate = (): string => grey(new Date().toLocaleString("en-US", { hour: "numeric", minute: "numeric", second: "numeric", hour12: false }));
-export const log = (logs: unknown[], icon: string, color: (text: unknown) => string): void => console.log(generateDate(), color(icon), ...logs);
-export const info = (...logs: unknown[]): void => log(logs, infoIcon, cyan);
-export const success = (...logs: unknown[]): void => log(logs, successIcon, green);
-export const warning = (...logs: unknown[]): void => log(logs, warningIcon, yellow);
-export const error = (...logs: unknown[]): void => log(logs, errorIcon, red);
+export const utils = {
+    infoIcon: stdout ? "ℹ" : "i",
+    successIcon: stdout ? "✔" : "√",
+    warningIcon: stdout ? "⚠" : "‼",
+    errorIcon: stdout ? "✖" : "×",
+    generateDate: (): string => grey(new Date().toLocaleString("en-US", { hour: "numeric", minute: "numeric", second: "numeric", hour12: false }))
+}
+
+const log = (logs: unknown[], icon: string, color: ChalkFunction): void => console.log(utils.generateDate(), color(icon), ...logs);
+
+export const createLogger = (icon: string, color: ChalkFunction): PoggerLogger => (...logs: unknown[]) => log(logs, icon, color);
+export const info: PoggerLogger = (...logs: unknown[]): void => log(logs, utils.infoIcon, cyan);
+export const success: PoggerLogger = (...logs: unknown[]): void => log(logs, utils.successIcon, green);
+export const warning: PoggerLogger = (...logs: unknown[]): void => log(logs, utils.warningIcon, yellow);
+export const error: PoggerLogger = (...logs: unknown[]): void => log(logs, utils.errorIcon, red);
