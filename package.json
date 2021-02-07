@@ -5,7 +5,7 @@
 		"url": "https://bariscodes.me"
 	},
 	"description": "😎 Cool looking logs",
-	"version": "0.0.5",
+	"version": "0.0.6",
 	"typings": "dist",
 	"scripts": {
 		"prebuild": "rimraf dist",
