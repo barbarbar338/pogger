@@ -1,3 +1,7 @@
+> DEPRECATED: Use @hammerhq/logger
+>
+> ~barbarbar338
+
 # 😎 Cool looking logs
 
 ```js
